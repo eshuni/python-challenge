@@ -1,10 +1,12 @@
 import os
 import csv
 
+count = 0
 total_votes = 0
 candidate = ""
 candidate_votes = {}
 candidate_percentages ={}
+unique_candidate = []
 winner_votes = 0
 winner = ""
 
@@ -43,3 +45,13 @@ print("------------------")
 print(f"Winner: {winner}")
 print("------------------")
 
+with open('election_results.txt', 'w') as text:
+    text.write("Election Results\n")
+    text.write("---------------------------------------\n")
+    text.write("Total Vote: " + str(count) + "\n")
+    text.write("---------------------------------------\n")
+    for i in range(len(set(unique_candidate))):
+        text.write(unique_candidate[i] + ": " + str(vote_percent[i]) +"% (" + str(vote_count[i]) + ")\n")
+    text.write("---------------------------------------\n")
+    text.write("The winner is: " + winner + "\n")
+    text.write("---------------------------------------\n")
